@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="#FAF6EE" stroke="#C9402A" stroke-width="3"/>
+  <!-- Red Ribbon -->
+  <path d="M22 20 C18 14 14 16 16 22 C18 26 24 24 26 24 C28 24 34 26 36 22 C38 16 34 14 30 20 Z" fill="#C9402A"/>
+  <circle cx="26" cy="22" r="3" fill="#AB301B"/>
+  <!-- Broom handle -->
+  <path d="M14 46 L48 18" stroke="#8C6D58" stroke-width="4" stroke-linecap="round"/>
+  <!-- Broom bristles -->
+  <path d="M12 48 C8 52 10 56 16 54 C20 52 22 46 22 46 L14 40 Z" fill="#DF9B35" stroke="#4A3427" stroke-width="1.5"/>
+  <!-- Stars -->
+  <path d="M46 36 L48 40 L52 42 L48 44 L46 48 L44 44 L40 42 L44 40 Z" fill="#DF9B35"/>
+</svg>
