@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sparkles, CheckCircle2, Award } from 'lucide-react';
 import type { CommitteeInfo } from '../types';
 import { RedRibbon } from './GhibliIllustrations';
@@ -11,12 +10,24 @@ interface CommitteeCardProps {
   expandedDefault?: boolean;
 }
 
-export const CommitteeCard: React.FC<CommitteeCardProps> = ({
+export const CommitteeCard = ({
   committee,
   isTopMatch = false,
   score,
   rank,
-}) => {
+}: CommitteeCardProps) => {
+  if (!committee) return null;
+
+  const color = committee.color || {
+    primary: '#C9402A',
+    light: '#FDF0ED',
+    border: '#F5BDB2',
+    tagBg: '#FCE0D9',
+    tagText: '#9A2B18',
+  };
+
+  const tasks = committee.whatYoullDo || [];
+
   return (
     <div
       className={`parchment-card p-5 sm:p-7 border-2 transition-all relative overflow-hidden ${
@@ -40,11 +51,11 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
         <div
           className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl shrink-0 shadow-sm border"
           style={{
-            backgroundColor: committee.color.light,
-            borderColor: committee.color.border,
+            backgroundColor: color.light,
+            borderColor: color.border,
           }}
         >
-          {committee.themeSymbol}
+          {committee.themeSymbol || '✨'}
         </div>
 
         <div className="flex-1 pr-14">
@@ -52,9 +63,9 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
             <span
               className="text-xs font-bold px-2.5 py-0.5 rounded-full border shadow-sm"
               style={{
-                backgroundColor: committee.color.tagBg,
-                color: committee.color.tagText,
-                borderColor: committee.color.border,
+                backgroundColor: color.tagBg,
+                color: color.tagText,
+                borderColor: color.border,
               }}
             >
               Archetype: {committee.archetype}
@@ -98,11 +109,11 @@ export const CommitteeCard: React.FC<CommitteeCardProps> = ({
         </div>
 
         <ul className="space-y-2">
-          {committee.whatYoullDo.map((task, idx) => (
+          {tasks.map((task, idx) => (
             <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-ghibli-brown leading-relaxed">
               <CheckCircle2
                 className="w-4 h-4 shrink-0 mt-0.5"
-                style={{ color: committee.color.primary }}
+                style={{ color: color.primary }}
               />
               <span>{task}</span>
             </li>

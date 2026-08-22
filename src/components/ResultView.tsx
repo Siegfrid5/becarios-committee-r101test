@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { motion } from 'framer-motion';
-import confetti from 'canvas-confetti';
 import { RotateCcw, Share2, Sparkles, Check, ChevronDown, ChevronUp, Heart } from 'lucide-react';
 import type { CalculationResult } from '../types';
 import { CommitteeCard } from './CommitteeCard';
@@ -15,47 +14,99 @@ interface ResultViewProps {
   onRetake: () => void;
 }
 
-export const ResultView: React.FC<ResultViewProps> = ({ result, onRetake }) => {
+export const ResultView = ({ result, onRetake }: ResultViewProps) => {
   const [copied, setCopied] = useState(false);
   const [showReview, setShowReview] = useState(false);
 
   useEffect(() => {
-    // Play celebratory chime sound
-    sound.playCelebration();
-
-    // Trigger Ghibli confetti celebration
+    // Scroll window to top smoothly when results load
     try {
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#C9402A', '#DF9B35', '#457B59', '#1A2938', '#FFFFFF'],
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch {
-      // safe fallback
+      window.scrollTo(0, 0);
     }
+
+    // Play celebratory chime sound
+    try {
+      sound.playCelebration();
+    } catch {
+      // ignore
+    }
+
+    // Safe dynamic confetti trigger
+    const launchConfetti = async () => {
+      try {
+        const confettiPkg = await import('canvas-confetti');
+        const confettiFn = (confettiPkg && confettiPkg.default) ? confettiPkg.default : confettiPkg;
+        if (typeof confettiFn === 'function') {
+          confettiFn({
+            particleCount: 70,
+            spread: 65,
+            origin: { y: 0.6 },
+            colors: ['#C9402A', '#DF9B35', '#457B59', '#1A2938', '#FFFFFF'],
+          });
+        }
+      } catch (err) {
+        console.warn('Confetti animation skipped:', err);
+      }
+    };
+
+    launchConfetti();
   }, []);
 
   const handleCopy = async () => {
-    sound.playClick('high');
+    try {
+      sound.playClick('high');
+    } catch {
+      // ignore
+    }
+
     const text = generateShareText(result);
     try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      } else {
+        // Fallback for non-secure / older clipboard contexts
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      }
     } catch {
       // fallback
     }
   };
 
-  const isTied = result.topCommittees.length > 1;
+  const topCommittees = result?.topCommittees || [];
+  const isTied = topCommittees.length > 1;
+
+  if (topCommittees.length === 0) {
+    return (
+      <div className="w-full max-w-md mx-auto px-4 py-8 text-center parchment-card">
+        <h2 className="font-title text-xl text-ghibli-navy mb-3">No Results Found</h2>
+        <p className="text-sm text-ghibli-brown mb-4">Please try retaking the test.</p>
+        <button
+          onClick={onRetake}
+          className="px-6 py-2.5 rounded-full bg-ghibli-red text-white font-bold"
+        >
+          Retake Test
+        </button>
+      </div>
+    );
+  }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="w-full max-w-xl mx-auto px-3 sm:px-4 py-2 pb-12"
+      transition={{ duration: 0.35 }}
+      className="w-full max-w-xl mx-auto px-3 sm:px-4 py-2 pb-16"
     >
       {/* Top Banner */}
       <div className="text-center mb-5">
@@ -81,8 +132,8 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onRetake }) => {
 
       {/* Top Match Result Card(s) with "OR" divider if tied */}
       <div className="space-y-4">
-        {result.topCommittees.map((committee, index) => (
-          <React.Fragment key={committee.key}>
+        {topCommittees.map((committee, index) => (
+          <Fragment key={committee.key}>
             {index > 0 && (
               <div className="flex items-center justify-center my-4">
                 <div className="flex items-center gap-3 w-full max-w-xs">
@@ -101,7 +152,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onRetake }) => {
               score={result.scores[committee.key]}
               rank={1}
             />
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
 
@@ -128,7 +179,11 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onRetake }) => {
         {/* Retake Button */}
         <button
           onClick={() => {
-            sound.playPageTurn();
+            try {
+              sound.playPageTurn();
+            } catch {
+              // ignore
+            }
             onRetake();
           }}
           className="w-full sm:w-auto px-6 py-3 rounded-full bg-white hover:bg-ghibli-parchment text-ghibli-brown font-sans font-bold text-sm border-2 border-ghibli-border shadow-sm hover:scale-102 active:scale-98 transition-all flex items-center justify-center gap-2 touch-manipulation"
@@ -139,13 +194,19 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onRetake }) => {
       </div>
 
       {/* Full Ranked Leaderboard */}
-      <RankedList rankedCommittees={result.allRanked} />
+      {result.allRanked && result.allRanked.length > 0 && (
+        <RankedList rankedCommittees={result.allRanked} />
+      )}
 
       {/* Answer Review Section Accordion */}
       <div className="parchment-card p-4 sm:p-5 border-2 border-ghibli-border shadow-ghibli mt-5">
         <button
           onClick={() => {
-            sound.playClick('low');
+            try {
+              sound.playClick('low');
+            } catch {
+              // ignore
+            }
             setShowReview(!showReview);
           }}
           className="w-full flex items-center justify-between text-left text-xs sm:text-sm font-bold text-ghibli-navy font-serif"
@@ -164,7 +225,7 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onRetake }) => {
         {showReview && (
           <div className="mt-3 pt-3 border-t border-[#E8DCB8] space-y-2">
             {QUESTIONS.map((q) => {
-              const ans = result.answers[q.id];
+              const ans = result.answers ? result.answers[q.id] : undefined;
               return (
                 <div
                   key={q.id}

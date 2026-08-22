@@ -9,6 +9,7 @@ import { ProgressBar } from './components/ProgressBar';
 import { IntroCard } from './components/IntroCard';
 import { QuestionCard } from './components/QuestionCard';
 import { ResultView } from './components/ResultView';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 type AppStep = 'INTRO' | 'QUIZ' | 'RESULT';
 
@@ -29,6 +30,7 @@ export function App() {
     setCurrentQuestionIndex(0);
     setResult(null);
     setStep('QUIZ');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleReset = () => {
@@ -36,6 +38,7 @@ export function App() {
     setCurrentQuestionIndex(0);
     setResult(null);
     setStep('INTRO');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAnswer = (ans: AnswerType) => {
@@ -50,6 +53,7 @@ export function App() {
       const res = calculateResults(newAnswers);
       setResult(res);
       setStep('RESULT');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -60,44 +64,52 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative pb-safe">
-      {/* Whimsical Ghibli animated sky backdrop */}
-      <BackgroundSky />
+    <ErrorBoundary>
+      <div className="min-h-screen flex flex-col relative pb-safe">
+        {/* Whimsical Ghibli animated sky backdrop */}
+        <BackgroundSky />
 
-      {/* Main App Navigation Header */}
-      <Header
-        soundEnabled={soundEnabled}
-        onToggleSound={handleToggleSound}
-        onReset={handleReset}
-        showReset={step !== 'INTRO'}
-      />
+        {/* Main App Navigation Header */}
+        <Header
+          soundEnabled={soundEnabled}
+          onToggleSound={handleToggleSound}
+          onReset={handleReset}
+          showReset={step !== 'INTRO'}
+        />
 
-      {/* Main Content Area */}
-      <main className="flex-1 flex flex-col justify-center py-2 sm:py-6">
-        {step === 'INTRO' && <IntroCard onStart={handleStart} />}
+        {/* Main Content Area */}
+        <main className="flex-1 flex flex-col justify-center py-2 sm:py-6">
+          {step === 'INTRO' && <IntroCard onStart={handleStart} />}
 
-        {step === 'QUIZ' && (
-          <div className="w-full flex flex-col items-center">
-            <ProgressBar
-              current={currentQuestionIndex + 1}
-              total={QUESTIONS.length}
-            />
-            <QuestionCard
-              question={QUESTIONS[currentQuestionIndex]}
-              selectedAnswer={answers[QUESTIONS[currentQuestionIndex].id]}
-              onAnswer={handleAnswer}
-              onPrev={handlePrev}
-              canPrev={currentQuestionIndex > 0}
-              totalQuestions={QUESTIONS.length}
-            />
-          </div>
-        )}
+          {step === 'QUIZ' && (
+            <div className="w-full flex flex-col items-center">
+              <ProgressBar
+                current={currentQuestionIndex + 1}
+                total={QUESTIONS.length}
+              />
+              <QuestionCard
+                question={QUESTIONS[currentQuestionIndex]}
+                selectedAnswer={answers[QUESTIONS[currentQuestionIndex].id]}
+                onAnswer={handleAnswer}
+                onPrev={handlePrev}
+                canPrev={currentQuestionIndex > 0}
+                totalQuestions={QUESTIONS.length}
+              />
+            </div>
+          )}
 
-        {step === 'RESULT' && result && (
-          <ResultView result={result} onRetake={handleStart} />
-        )}
-      </main>
-    </div>
+          {step === 'RESULT' && result && (
+            <ResultView result={result} onRetake={handleStart} />
+          )}
+
+          {step === 'RESULT' && !result && (
+            <div className="w-full max-w-md mx-auto p-6 parchment-card text-center">
+              <p className="text-sm text-ghibli-brown">Calculating results...</p>
+            </div>
+          )}
+        </main>
+      </div>
+    </ErrorBoundary>
   );
 }
 
