@@ -149,10 +149,10 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     name: 'COMMUNITY SERVICE',
     archetype: 'The Changemaker',
     themeSymbol: '🌱',
-    badgeTitle: 'Grassroots & BUTIL Champion',
+    badgeTitle: 'Grassroots & Community Champion',
     whyItFits: 'You love going outside in your free time and are passionate about taking part in outreach and community development programs. You thrive when working directly with external partner communities and getting your hands dirty on the ground.',
     whatYoullDo: [
-      'Participate in and provide direct assistance for the flagship BUTIL (Bonded University Towards Imbued Learning) project.',
+      'Participate in and provide direct assistance for organizational community outreach initiatives.',
       'Coordinate with partner communities, civic organizations, and officers regarding outreach activities.',
       'Spearhead organizational outreaches and community development initiatives.',
       'Ensure environmental welfare and sustainability practices during face-to-face events and activities.',
