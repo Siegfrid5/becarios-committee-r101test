@@ -9,7 +9,7 @@ Built with **React + TypeScript + Vite + Tailwind CSS**, designed mobile-first f
 ## ✨ Features
 
 - 🎀 **Ghibli / Kiki's Delivery Service Aesthetic**:
-  - Warm bakery parchment tones, Gütiokipänja Bakery signboard, Kiki's iconic red ribbon and flying broom, Jiji the cat artwork, and seaside Koriko pastel skies with drifting clouds.
+  - Seaside Koriko & vintage warm parchment tones, Becarios sorting banner, Kiki's iconic red ribbon and flying broom, Jiji the cat artwork, and pastel skies with drifting clouds.
 - 📱 **Mobile Portrait First (Required & Optimized)**:
   - Big thumb-friendly touch targets ($\ge 56\text{px}$) for YES/NO choices.
   - Safe-area support for iOS home bars and mobile browser address bars.

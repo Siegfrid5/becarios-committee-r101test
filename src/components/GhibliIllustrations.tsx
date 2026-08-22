@@ -187,9 +187,9 @@ export const DeliveryParcel: React.FC<{ className?: string; size?: number }> = (
 
 export const BakerySign: React.FC<{ className?: string }> = ({ className = '' }) => (
   <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ghibli-gold-light border border-ghibli-gold/40 text-ghibli-brown text-xs font-semibold tracking-wide uppercase shadow-sm ${className}`}>
-    <span className="text-base">🥖</span>
-    <span>Gütiokipänja Committee Service</span>
-    <span className="text-base">🥐</span>
+    <span className="text-sm">✨</span>
+    <span>Becarios Committee Sorting</span>
+    <span className="text-sm">💌</span>
   </div>
 );
 

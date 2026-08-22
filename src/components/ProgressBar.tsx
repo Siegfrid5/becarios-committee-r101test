@@ -49,9 +49,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total }) => {
 
       {/* Little cloud waypoints on the route */}
       <div className="flex justify-between items-center px-1 mt-1 text-[10px] text-ghibli-brown-light font-hand">
-        <span>Town Square</span>
-        <span>Gütiokipänja Bakery</span>
-        <span>Clock Tower</span>
+        <span>Departure</span>
+        <span>In Flight</span>
+        <span>Your Calling</span>
       </div>
     </div>
   );
