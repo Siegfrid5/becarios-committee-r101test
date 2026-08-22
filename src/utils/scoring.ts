@@ -53,9 +53,9 @@ export function calculateResults(answers: Record<number, AnswerType>): Calculati
       currentRank = index + 1;
     }
 
-    // Relative match score between 40% and 99% for intuitive UI bar
-    const normalized = Math.round(50 + ((score - (minScore + scoreSpan / 2)) / (scoreSpan || 1)) * 48);
-    const clampedPercentage = Math.max(20, Math.min(99, normalized));
+    // Direct linear normalization: minScore maps to 20%, maxScore maps to 100%
+    const ratio = scoreSpan > 0 ? (score - minScore) / scoreSpan : 1;
+    const clampedPercentage = Math.round(20 + ratio * 80);
 
     return {
       committee: COMMITTEES[k],

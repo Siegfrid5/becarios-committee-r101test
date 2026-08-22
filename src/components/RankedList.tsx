@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ChevronUp, Trophy } from 'lucide-react';
 import type { CommitteeScoreResult } from '../types';
 import { CommitteeCard } from './CommitteeCard';
@@ -8,11 +8,15 @@ interface RankedListProps {
   rankedCommittees: CommitteeScoreResult[];
 }
 
-export const RankedList: React.FC<RankedListProps> = ({ rankedCommittees }) => {
+export const RankedList = ({ rankedCommittees }: RankedListProps) => {
   const [expandedKey, setExpandedKey] = useState<string | null>(null);
 
   const toggleExpand = (key: string) => {
-    sound.playClick('low');
+    try {
+      sound.playClick('low');
+    } catch {
+      // ignore
+    }
     setExpandedKey((prev) => (prev === key ? null : key));
   };
 
@@ -42,15 +46,15 @@ export const RankedList: React.FC<RankedListProps> = ({ rankedCommittees }) => {
           const isWinner = item.isTop;
 
           return (
-            <div key={item.committee.key} className="py-2.5 sm:py-3 transition-colors">
+            <div key={item.committee.key} className="py-3 transition-colors">
               {/* Row Header / Clickable Accordion Item */}
               <button
                 onClick={() => toggleExpand(item.committee.key)}
-                className="w-full text-left flex items-center gap-2.5 sm:gap-3 p-2 rounded-xl hover:bg-[#FAF6EE] transition-all touch-manipulation group"
+                className="w-full text-left flex items-start gap-3 p-2 rounded-xl hover:bg-[#FAF6EE] transition-all touch-manipulation group"
               >
                 {/* Rank Badge */}
                 <div
-                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-sm border ${
+                  className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-sm border mt-0.5 ${
                     isWinner
                       ? 'bg-ghibli-gold text-white border-[#B87C20]'
                       : item.rank === 2
@@ -64,37 +68,45 @@ export const RankedList: React.FC<RankedListProps> = ({ rankedCommittees }) => {
                 </div>
 
                 {/* Symbol */}
-                <span className="text-xl sm:text-2xl shrink-0">{item.committee.themeSymbol}</span>
+                <span className="text-2xl shrink-0 mt-0.5">{item.committee.themeSymbol}</span>
 
-                {/* Info & Score Progress */}
+                {/* Info & Score Progress with UNIFORM full-width bar container */}
                 <div className="flex-1 min-w-0 pr-1">
-                  <div className="flex items-center justify-between gap-1 flex-wrap">
-                    <span className="font-bold text-xs sm:text-sm text-ghibli-navy truncate group-hover:text-ghibli-red transition-colors">
-                      {item.committee.name}
-                    </span>
+                  {/* Top Line: Committee Name, Archetype & Points */}
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
+                      <span className="font-bold text-xs sm:text-sm text-ghibli-navy truncate group-hover:text-ghibli-red transition-colors">
+                        {item.committee.name}
+                      </span>
+                      <span className="text-[11px] font-semibold text-ghibli-brown-light hidden xs:inline sm:inline">
+                        • {item.committee.archetype}
+                      </span>
+                    </div>
+
                     <span className="text-xs font-bold text-ghibli-red shrink-0">
                       {item.score > 0 ? `+${item.score}` : item.score} pts
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="flex-1 h-2 bg-[#EFE5D3] rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all duration-500"
-                        style={{
-                          width: `${item.matchPercentage}%`,
-                          backgroundColor: item.committee.color.primary,
-                        }}
-                      />
-                    </div>
-                    <span className="text-[10px] font-semibold text-ghibli-brown-light shrink-0">
-                      {item.committee.archetype}
-                    </span>
+                  {/* Archetype visible on very small screens */}
+                  <div className="text-[10px] font-medium text-ghibli-brown-light xs:hidden sm:hidden -mt-0.5 mb-1 truncate">
+                    {item.committee.archetype}
+                  </div>
+
+                  {/* Dedicated 100% UNIFORM Width Progress Bar Container */}
+                  <div className="w-full h-2.5 bg-[#EFE5D3] rounded-full overflow-hidden mt-1.5 shadow-inner">
+                    <div
+                      className="h-full rounded-full transition-all duration-500 ease-out"
+                      style={{
+                        width: `${item.matchPercentage}%`,
+                        backgroundColor: item.committee.color?.primary || '#C9402A',
+                      }}
+                    />
                   </div>
                 </div>
 
                 {/* Chevron */}
-                <div className="p-1 rounded-full text-ghibli-brown-light group-hover:text-ghibli-brown shrink-0">
+                <div className="p-1 rounded-full text-ghibli-brown-light group-hover:text-ghibli-brown shrink-0 mt-1">
                   {isExpanded ? (
                     <ChevronUp className="w-4 h-4" />
                   ) : (
@@ -105,7 +117,7 @@ export const RankedList: React.FC<RankedListProps> = ({ rankedCommittees }) => {
 
               {/* Expanded Card Details */}
               {isExpanded && (
-                <div className="mt-2 pl-2 pr-1 pb-1 animate-fadeIn">
+                <div className="mt-2 pl-2 pr-1 pb-1">
                   <CommitteeCard
                     committee={item.committee}
                     score={item.score}
