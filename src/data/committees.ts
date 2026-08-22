@@ -9,9 +9,9 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Communication Delivery',
     whyItFits: 'You take pride in keeping everyone connected, disseminating essential announcements, and actively fostering an inclusive scholar community. You feel most comfortable operating within the organization, and when given the choice, you prefer handling databases, registration forms, and attendance tracking rather than dealing with stagecraft or complex technical setups.',
     whatYoullDo: [
-      'Maintain and update the official Becarios de Santo Tomas membership database.',
-      'Disseminate announcements and crucial updates to the general body.',
-      'Create, distribute, and collate event registration forms and attendance records.',
+      'Maintain the official membership database of Becarios de Santo Tomas.',
+      'Disseminate announcements and organizational updates to all members.',
+      'Create and collate event registration forms and attendance records.',
     ],
     color: {
       primary: '#3B6978',
@@ -29,8 +29,8 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Logistics & Tech Master',
     whyItFits: 'You thrive on hands-on action rather than sitting behind desk forms. You prefer tackling real-time event logistics, managing technical planning, and getting actively involved on the floor or behind the screen to ensure every program runs smoothly.',
     whatYoullDo: [
-      'Online Setup: Lead live technicalities, moderate virtual platforms, and troubleshoot tech issues for members.',
-      'Face-to-Face Setup: Scout and purchase event materials, manage physical props, and lead stage logistics.',
+      'Online Setup: Lead technical operations during events, moderate virtual platforms, and provide technical troubleshooting support for members.',
+      'Face-to-Face Setup: Accountable for purchasing necessary event materials and supplies (e.g., food, school supplies), as well as managing stage setups and props.',
     ],
     color: {
       primary: '#C9402A',
@@ -48,9 +48,10 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Visual Atelier',
     whyItFits: 'You describe yourself as artistic and thrive when translating abstract concepts into striking visuals. You prefer focusing your efforts internally—crafting the aesthetic identity and storytelling elements of the org rather than dealing with external negotiations or administrative spreadsheets.',
     whatYoullDo: [
-      'Design promotional posters, banners, and digital collateral for all org initiatives.',
-      'Produce and animate audio-visual presentations (AVPs) for events.',
-      'Collaborate with project heads to develop unique visual themes and merchandise.',
+      'Create and prepare publicity materials and paraphernalia needed across all projects and events.',
+      'Design promotional posters and create audio-visual presentations (AVPs).',
+      'Propose visual concepts, aesthetics, and themes for org campaigns.',
+      'Coordinate with project heads and other committees to align design deliverables.',
     ],
     color: {
       primary: '#A05C7B',
@@ -68,9 +69,10 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Visual Chronicler',
     whyItFits: 'You have a natural eye for visual storytelling and love capturing events, places, and candid moments to share on social feeds. You enjoy being on the move, documenting live scenes through your lens, and turning raw moments into memorable recap reels.',
     whatYoullDo: [
-      'Capture high-quality photo and video coverage during live and virtual events.',
-      'Edit engaging recap highlights, teasers, and promotional reels.',
-      'Supply visual media for EscolarIo and all organizational publicity releases.',
+      'Take official photo and video coverage during live and online events.',
+      'Prepare photo and video highlights for promotional releases and recaps.',
+      'Edit event videos, project reels, and teasers.',
+      'Provide official imagery and visual assets for publicity materials and EscolarIo.',
     ],
     color: {
       primary: '#D3753C',
@@ -88,9 +90,10 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Insights & EscolarIo Voice',
     whyItFits: 'You genuinely enjoy handling paperwork, structuring surveys, and analyzing feedback to drive improvements. You prefer working on internal reporting and official correspondence, while also having an appetite for writing and publishing mission-driven content.',
     whatYoullDo: [
-      'Craft evaluation forms, distribute member surveys, and analyze post-event reports.',
-      'Manage official organizational correspondence and documentation archives.',
-      'Direct and produce articles and features for EscolarIo, the official media outlet of Becarios.',
+      'Formulate, distribute, and analyze organizational evaluation forms, surveys, and post-event reports.',
+      'Collect and manage official correspondence and administrative files.',
+      'Manage and direct EscolarIo, the official media outlet of the organization.',
+      'Produce written and media content aligned with the mission, vision, and interests of the organization.',
     ],
     color: {
       primary: '#4D648D',
@@ -108,9 +111,9 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Sponsorship & Resource Pioneer',
     whyItFits: 'You are energized by reaching beyond campus walls and pitching projects to external partners. You don\'t mind handling sponsorship paperwork, formal proposals, and deliverables if it means securing funds and building long-term alliances.',
     whatYoullDo: [
-      'Scout, contact, and secure corporate sponsors and brand partners.',
-      'Manage partner relationships by sending post-event liquidation and marketing reports.',
-      'Formulate innovative fundraising strategies to ensure organizational sustainability.',
+      'Scout and contact potential brand partners and event sponsors.',
+      'Maintain partnerships by preparing and sending post-event reports, liquidation, and documentation.',
+      'Formulate fundraising strategies and initiatives for the long-term financial sustainability of the organization.',
     ],
     color: {
       primary: '#D49228',
@@ -128,9 +131,10 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Legacy & Network Envoy',
     whyItFits: 'You love networking, building professional relations, and communicating ideas with graduates and past leaders of the organization. You excel at bridging external stakeholders with current initiatives and maintaining valuable historical networks.',
     whatYoullDo: [
-      'Maintain and expand the alumni scholars\' database.',
-      'Plan and coordinate joint initiatives with the Thomasian Scholars Alumni Association Inc. (TSAAI).',
-      'Scout potential project speakers, mentors, and alumni sponsors in coordination with Ways & Means.',
+      'Maintain and update the alumni scholars\' database.',
+      'Connect and organize joint initiatives with the Thomasian Scholars Alumni Association Inc. (TSAAI).',
+      'Coordinate with the Ways and Means Committee regarding sponsorships and collaborative projects presented by TSAAI.',
+      'Scout potential mentors, project speakers, and sponsors among the alumni community.',
     ],
     color: {
       primary: '#6D597A',
@@ -148,9 +152,10 @@ export const COMMITTEES: Record<CommitteeKey, CommitteeInfo> = {
     badgeTitle: 'Grassroots & BUTIL Champion',
     whyItFits: 'You love going outside in your free time and are passionate about taking part in outreach and community development programs. You thrive when working directly with external partner communities and getting your hands dirty on the ground.',
     whatYoullDo: [
-      'Spearhead organizational outreach programs and hands-on community service missions.',
-      'Coordinate directly with partner communities and external civic organizations.',
-      'Drive the flagship BUTIL (Bonded University Towards Imbued Learning) project and ensure environmental welfare during face-to-face initiatives.',
+      'Participate in and provide direct assistance for the flagship BUTIL (Bonded University Towards Imbued Learning) project.',
+      'Coordinate with partner communities, civic organizations, and officers regarding outreach activities.',
+      'Spearhead organizational outreaches and community development initiatives.',
+      'Ensure environmental welfare and sustainability practices during face-to-face events and activities.',
     ],
     color: {
       primary: '#3E7B5C',
