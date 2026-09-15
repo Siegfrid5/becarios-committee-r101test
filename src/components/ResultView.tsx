@@ -4,7 +4,7 @@ import { RotateCcw, Share2, Sparkles, Check, ChevronDown, ChevronUp, Heart } fro
 import type { CalculationResult } from '../types';
 import { CommitteeCard } from './CommitteeCard';
 import { RankedList } from './RankedList';
-import { RedRibbon, JijiCat, BakerySign } from './GhibliIllustrations';
+import { RedRibbon, BakerySign } from './GhibliIllustrations';
 import { generateShareText } from '../utils/scoring';
 import { QUESTIONS } from '../data/questions';
 import { sound } from '../utils/sound';
@@ -250,9 +250,9 @@ export const ResultView = ({ result, onRetake }: ResultViewProps) => {
         )}
       </div>
 
-      {/* Footer message with Jiji */}
-      <div className="text-center mt-8 text-xs text-ghibli-brown-light font-hand flex flex-col items-center gap-2">
-        <JijiCat size={38} />
+      {/* Footer message */}
+      <div className="text-center mt-8 text-xs text-ghibli-brown-light font-hand flex flex-col items-center gap-1.5">
+        <RedRibbon size={22} />
         <p className="flex items-center gap-1">
           Made with <Heart className="w-3 h-3 text-ghibli-red fill-ghibli-red inline" /> for Becarios de Santo Tomas
         </p>

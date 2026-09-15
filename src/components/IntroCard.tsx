@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles, Compass, X, CheckCircle2, Award } from 'lucide-react';
-import { KikiFlying, JijiCat, RedRibbon, BakerySign } from './GhibliIllustrations';
+import { KikiFlying, RedRibbon, BakerySign } from './GhibliIllustrations';
 import { COMMITTEES } from '../data/committees';
 import type { CommitteeInfo, CommitteeKey } from '../types';
 import { sound } from '../utils/sound';
@@ -67,13 +67,8 @@ export const IntroCard = ({ onStart }: IntroCardProps) => {
               animate={{ y: [0, -8, 0], rotate: [0, 1.5, 0] }}
               transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
             >
-              <KikiFlying width={140} height={80} />
+              <KikiFlying width={155} height={105} />
             </motion.div>
-          </div>
-
-          {/* Jiji in the corner */}
-          <div className="absolute right-1 bottom-1 sm:right-3 sm:bottom-3 opacity-90">
-            <JijiCat size={44} />
           </div>
         </div>
 

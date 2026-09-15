@@ -96,68 +96,232 @@ export const JijiCat: React.FC<{ className?: string; size?: number }> = ({ class
 
 export const KikiFlying: React.FC<{ className?: string; width?: number; height?: number }> = ({
   className = '',
-  width = 120,
-  height = 70,
+  width = 140,
+  height = 98,
 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 120 70"
+    viewBox="0 -16 140 106"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={`inline-block ${className}`}
   >
-    {/* Broom Handle */}
-    <path d="M12 52 L110 24" stroke="#8C6D58" strokeWidth="4.5" strokeLinecap="round" />
-
-    {/* Broom Bristles (Straw Tail) */}
+    {/* Broom Bristles (Straw Tail - fully enclosing back, no stick protruding) */}
     <path
-      d="M8 53 C2 57, 4 64, 14 62 C22 60, 26 50, 28 48 L14 44 Z"
+      d="M 25 66 C 16 63, 10 63, 4 67 C 2 73, 5 81, 12 82 C 18 82, 22 75, 26 71 Z"
       fill="#DF9B35"
       stroke="#8C6D58"
       strokeWidth="1.5"
     />
-    <path d="M12 48 L22 55" stroke="#AB7120" strokeWidth="1" />
-    <path d="M10 54 L24 57" stroke="#AB7120" strokeWidth="1" />
-    <path d="M14 60 L26 52" stroke="#AB7120" strokeWidth="1" />
+    <path d="M 23 68 L 7 70" stroke="#AB7120" strokeWidth="1" />
+    <path d="M 24 69 L 8 76" stroke="#AB7120" strokeWidth="1" />
+    <path d="M 24 70 L 13 80" stroke="#AB7120" strokeWidth="1" />
 
-    {/* Delivery Bag hanging on broom */}
-    <rect x="36" y="44" width="16" height="14" rx="2" fill="#D98A4B" stroke="#9E4E1C" strokeWidth="1.5" />
-    <line x1="36" y1="49" x2="52" y2="49" stroke="#9E4E1C" strokeWidth="1.5" />
-    <path d="M44 40 L44 44" stroke="#7A3B12" strokeWidth="1.5" />
+    {/* Broom Neck Binding (Twine Wrap) */}
+    <rect x="23" y="65" width="4.5" height="7" rx="1" fill="#C9402A" transform="rotate(-12 23 65)" />
 
-    {/* Kiki's Black Witch Dress */}
+    {/* Broom Handle (Stick starts strictly at neck binding, NEVER protrudes at back) */}
+    <path d="M 25 68 L 126 44" stroke="#8C6D58" strokeWidth="5.5" strokeLinecap="round" />
+
+    {/* Delivery Parcel on broom behind rider */}
+    <rect x="33" y="58" width="14" height="11" rx="2" fill="#F4E8D1" stroke="#8C6D58" strokeWidth="1.2" transform="rotate(-13 33 58)" />
+    <line x1="33" y1="64" x2="47" y2="61" stroke="#C9402A" strokeWidth="1.2" />
+    <circle cx="40" cy="62" r="2" fill="#C9402A" />
+
+    {/* Far Arm (Left Arm) reaching forward to broom */}
     <path
-      d="M58 24 C54 30, 48 38, 46 44 C56 46, 72 44, 76 38 C74 32, 70 26, 66 22 Z"
-      fill="#1A2938"
-      stroke="#0F1822"
+      d="M 58 48 C 62 52, 68 54, 73 57 L 71 62 C 65 59, 59 56, 56 51 Z"
+      fill="#3D8E3F"
+      stroke="#25662A"
+      strokeWidth="1.2"
+    />
+    {/* Far Hand (Left Hand gripping broom handle) */}
+    <ellipse cx="74" cy="56" rx="4" ry="4" fill="#E5C6A0" stroke="#CCA87E" strokeWidth="1" />
+
+    {/* Torso (Green Mascot Shirt connected under head and resting on broom) */}
+    <path
+      d="M 62 46 C 54 48, 48 55, 48 62 C 54 64, 66 61, 70 58 C 73 56, 75 50, 76 46 Z"
+      fill="#4CA852"
+      stroke="#2D6B32"
       strokeWidth="1.5"
     />
+    {/* Red inner collar / scarf */}
+    <path d="M 66 48 L 69 56 L 72 48 Z" fill="#C9402A" stroke="#9A2B18" strokeWidth="1" />
 
-    {/* Kiki's Head / Hair */}
-    <circle cx="70" cy="18" r="8" fill="#3D291D" />
-    <ellipse cx="72" cy="19" rx="4" ry="4" fill="#FCEBD5" />
+    {/* Near Arm (Right Arm extending from shoulder to front hand) */}
+    <path
+      d="M 72 47 C 76 47, 82 48, 86 50 L 85 57 C 80 56, 74 55, 70 53 Z"
+      fill="#4CA852"
+      stroke="#2D6B32"
+      strokeWidth="1.5"
+    />
+    {/* Near Hand (Right Hand gripping broom handle) */}
+    <ellipse cx="88" cy="53" rx="4.5" ry="4.5" fill="#E5C6A0" stroke="#CCA87E" strokeWidth="1" />
+    <path d="M 85 51 Q 88 49, 91 52" stroke="#CCA87E" strokeWidth="1" fill="none" />
 
-    {/* Kiki's Big Red Bow */}
-    <g transform="translate(62, 5) scale(0.65)">
-      {/* Left Wing */}
-      <path d="M14 10 C8 2, -2 4, 0 14 C2 20, 10 18, 14 12 Z" fill="#C9402A" stroke="#9A2B18" strokeWidth="1.5" />
-      {/* Right Wing */}
-      <path d="M14 10 C20 2, 30 4, 28 14 C26 20, 18 18, 14 12 Z" fill="#C9402A" stroke="#9A2B18" strokeWidth="1.5" />
-      {/* Center Knot */}
-      <ellipse cx="14" cy="11" rx="3" ry="3" fill="#E25841" />
+    {/* Aryo's Head Group */}
+    <g id="aryo-head">
+      {/* Left Ear */}
+      <path
+        d="M 47 26 C 39 24, 37 40, 47 44"
+        fill="#E5C6A0"
+        stroke="#CCA87E"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M 45 30 C 41 31, 41 38, 45 40"
+        stroke="#B88C5E"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M 44 35 C 42 36, 42 37, 44 38"
+        stroke="#B88C5E"
+        strokeWidth="1"
+        strokeLinecap="round"
+        fill="none"
+      />
+
+      {/* Right Ear */}
+      <path
+        d="M 91 26 C 99 24, 101 40, 91 44"
+        fill="#E5C6A0"
+        stroke="#CCA87E"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M 93 30 C 97 31, 97 38, 93 40"
+        stroke="#B88C5E"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M 94 35 C 96 36, 96 37, 94 38"
+        stroke="#B88C5E"
+        strokeWidth="1"
+        strokeLinecap="round"
+        fill="none"
+      />
+
+      {/* Face Base (Rounded mascot head with proportional compact chin) */}
+      <ellipse cx="69" cy="34" rx="22" ry="18" fill="#E5C6A0" stroke="#CCA87E" strokeWidth="1.5" />
+
+      {/* Mascot Hair Base */}
+      <path
+        d="M 47 31 C 46 22, 50 18, 54 16 C 60 15, 78 15, 84 16 C 89 18, 91 22, 91 31 C 91 38, 89 44, 88 45 C 88 38, 87 25, 84 24 C 80 29, 73 28, 69 23 C 65 27, 58 27, 54 23 C 52 28, 51 39, 50 45 C 49 40, 48 36, 47 31 Z"
+        fill="#2A2B36"
+        stroke="#1A1B22"
+        strokeWidth="1.2"
+      />
+
+      {/* Wizard Hat (Matching reference image: dark purple, notched crease cone, orange belt & buckle) */}
+      {/* 1. Hat Cone with reference notch */}
+      <path
+        d="M 54 12 L 66 -12 L 85 -1 L 75 -1 L 84 12 Z"
+        fill="#41374F"
+        stroke="#16131C"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+
+      {/* 2. Orange Belt */}
+      <rect
+        x="52"
+        y="12"
+        width="34"
+        height="6"
+        fill="#EA8B27"
+        stroke="#16131C"
+        strokeWidth="1.8"
+      />
+
+      {/* 3. Gold Buckle (Outer rectangle with black center) */}
+      <rect
+        x="63.5"
+        y="9.5"
+        width="11"
+        height="11"
+        rx="1.5"
+        fill="#EA8B27"
+        stroke="#16131C"
+        strokeWidth="2"
+      />
+      <rect
+        x="66.5"
+        y="12.5"
+        width="5"
+        height="5"
+        fill="#16131C"
+      />
+
+      {/* 4. Hat Brim (Seamlessly hugging forehead with flared pointed wings) */}
+      <path
+        d="M 38 24 Q 69 29, 100 24 L 86 18 Q 69 21, 52 18 Z"
+        fill="#41374F"
+        stroke="#16131C"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+
+      {/* Front Forehead Bangs peeking seamlessly below hat brim */}
+      <path
+        d="M 54 26 C 60 29, 67 29, 72 25 C 68 31, 61 33, 54 26 Z"
+        fill="#2A2B36"
+      />
+      <path
+        d="M 68 27 C 73 30, 79 30, 83 26 C 80 30, 74 31, 68 27 Z"
+        fill="#23242E"
+      />
+
+      {/* Eyebrows (Thick arched mascot brows) */}
+      <path
+        d="M 53 28 Q 59 24, 64 27"
+        stroke="#1E1E26"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M 74 27 Q 79 24, 85 28"
+        stroke="#1E1E26"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+
+      {/* Natural Warm Human/Mascot Eyes */}
+      {/* Left Eye */}
+      <ellipse cx="59" cy="34" rx="4.8" ry="6.2" fill="#291D1A" stroke="#1A1210" strokeWidth="1" />
+      <ellipse cx="59" cy="35" rx="3.6" ry="4.4" fill="#3B2A26" />
+      <ellipse cx="59" cy="34" rx="2.4" ry="3" fill="#1C1311" />
+      <circle cx="57.6" cy="32" r="0.9" fill="#FFFFFF" opacity="0.65" />
+
+      {/* Right Eye */}
+      <ellipse cx="79" cy="34" rx="4.8" ry="6.2" fill="#291D1A" stroke="#1A1210" strokeWidth="1" />
+      <ellipse cx="79" cy="35" rx="3.6" ry="4.4" fill="#3B2A26" />
+      <ellipse cx="79" cy="34" rx="2.4" ry="3" fill="#1C1311" />
+      <circle cx="77.6" cy="32" r="0.9" fill="#FFFFFF" opacity="0.65" />
+
+      {/* Nose (Sculpted mascot nose) */}
+      <polygon points="67.5,32 70.5,32 69,39" fill="#CCA87E" stroke="#B88C5E" strokeWidth="0.8" />
+      <polygon points="69,32 70.5,32 69,39" fill="#BA8D5E" />
+
+      {/* Mouth (Lowered closer to jawline) */}
+      <path
+        d="M 57 44 Q 69 47, 81 44 Q 69 52, 57 44 Z"
+        fill="#8E1F2C"
+        stroke="#68121B"
+        strokeWidth="1.2"
+      />
+      {/* Tongue inside mouth */}
+      <path
+        d="M 62 48 Q 69 46, 76 48 Q 69 51.5, 62 48 Z"
+        fill="#D64858"
+      />
     </g>
-
-    {/* Jiji peeking from delivery bag */}
-    <ellipse cx="50" cy="40" rx="3.5" ry="3.5" fill="#1A2938" />
-    <polygon points="48,37 49,33 51,37" fill="#1A2938" />
-    <polygon points="51,37 53,33 54,37" fill="#1A2938" />
-    <circle cx="49" cy="40" r="0.8" fill="#FFFDF9" />
-    <circle cx="52" cy="40" r="0.8" fill="#FFFDF9" />
-
-    {/* Wind / flight speed lines */}
-    <path d="M88 18 C96 16, 104 18, 114 16" stroke="#DF9B35" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 3" />
-    <path d="M96 28 C104 28, 110 30, 118 29" stroke="#E8DCB8" strokeWidth="1.5" strokeLinecap="round" />
   </svg>
 );
 
