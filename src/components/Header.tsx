@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
             Becarios de Santo Tomas
           </span>
           <span className="text-[11px] font-hand text-ghibli-brown-light tracking-wide">
-            Kiki's Committee Sorting Test
+            Aryo's Committee Sorting Test
           </span>
         </div>
       </div>
