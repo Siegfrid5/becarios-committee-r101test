@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles, Compass, X, CheckCircle2, Award } from 'lucide-react';
-import { KikiFlying, RedRibbon, BakerySign } from './GhibliIllustrations';
+import { KikiFlying, RedRibbon, BakerySign, FloatingCloud } from './GhibliIllustrations';
 import { COMMITTEES } from '../data/committees';
 import type { CommitteeInfo, CommitteeKey } from '../types';
 import { sound } from '../utils/sound';
@@ -57,11 +57,164 @@ export const IntroCard = ({ onStart }: IntroCardProps) => {
           <BakerySign />
         </div>
 
-        {/* Hero Artwork */}
-        <div className="relative flex justify-center items-center py-2 sm:py-4">
+        {/* Hero Artwork with Seamless Passing Clouds and Wind Wisps */}
+        <div className="relative flex justify-center items-center py-2 sm:py-4 overflow-hidden w-full max-w-md mx-auto min-h-[145px]">
           {/* Gentle background circle highlight */}
-          <div className="absolute w-44 h-44 rounded-full bg-ghibli-gold-light/60 blur-xl -z-0" />
+          <div className="absolute w-44 h-44 rounded-full bg-ghibli-gold-light/70 blur-xl -z-0" />
 
+          {/* Background Passing Cloud 1 (Upper sky) */}
+          <motion.div
+            className="absolute top-1 left-1/2 pointer-events-none z-0"
+            animate={{
+              x: [240, -250],
+              opacity: [0, 0.65, 0.65, 0.65, 0],
+            }}
+            transition={{
+              duration: 8.5,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.18, 0.5, 0.85, 1],
+            }}
+          >
+            <FloatingCloud width={75} opacity={0.65} />
+          </motion.div>
+
+          {/* Background Passing Cloud 2 (Lower sky, larger) */}
+          <motion.div
+            className="absolute bottom-1 left-1/2 pointer-events-none z-0"
+            animate={{
+              x: [250, -260],
+              opacity: [0, 0.55, 0.55, 0.55, 0],
+            }}
+            transition={{
+              duration: 10.5,
+              delay: 3.2,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.18, 0.5, 0.85, 1],
+            }}
+          >
+            <FloatingCloud width={90} opacity={0.55} />
+          </motion.div>
+
+          {/* Background Passing Cloud 3 (Mid sky puff) */}
+          <motion.div
+            className="absolute top-1/3 left-1/2 pointer-events-none z-0"
+            animate={{
+              x: [230, -240],
+              opacity: [0, 0.5, 0.5, 0.5, 0],
+            }}
+            transition={{
+              duration: 7.2,
+              delay: 5.0,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.18, 0.5, 0.85, 1],
+            }}
+          >
+            <FloatingCloud width={55} opacity={0.5} />
+          </motion.div>
+
+          {/* Background Passing Cloud 4 (Fast small trailing cloud) */}
+          <motion.div
+            className="absolute top-2/3 left-1/2 pointer-events-none z-0"
+            animate={{
+              x: [240, -240],
+              opacity: [0, 0.45, 0.45, 0.45, 0],
+            }}
+            transition={{
+              duration: 8.0,
+              delay: 1.6,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.18, 0.5, 0.85, 1],
+            }}
+          >
+            <FloatingCloud width={45} opacity={0.45} />
+          </motion.div>
+
+          {/* Passing Wind Wisp 1 (Above hat - streaming breeze) */}
+          <motion.div
+            className="absolute top-2 left-1/2 pointer-events-none z-10"
+            animate={{
+              x: [220, -240],
+              opacity: [0, 0.8, 0.8, 0.8, 0],
+            }}
+            transition={{
+              duration: 4.2,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.15, 0.5, 0.85, 1],
+            }}
+          >
+            <svg width="70" height="14" viewBox="0 0 70 14" fill="none">
+              <path d="M 68 7 C 52 3, 34 11, 16 6 C 8 3, 3 7, 1 6" stroke="#DF9B35" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </motion.div>
+
+          {/* Passing Wind Wisp 2 (Under broom - long golden & cream stream) */}
+          <motion.div
+            className="absolute bottom-3 left-1/2 pointer-events-none z-10"
+            animate={{
+              x: [230, -250],
+              opacity: [0, 0.78, 0.78, 0.78, 0],
+            }}
+            transition={{
+              duration: 3.8,
+              delay: 1.8,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.15, 0.5, 0.85, 1],
+            }}
+          >
+            <svg width="85" height="12" viewBox="0 0 85 12" fill="none">
+              <path d="M 83 6 C 63 3, 40 8, 20 5 C 10 3, 3 7, 1 6" stroke="#E5A43D" strokeWidth="2" strokeLinecap="round" />
+              <path d="M 58 10 C 44 9, 30 11, 16 8" stroke="#FAF6EE" strokeWidth="1.6" strokeLinecap="round" opacity="0.9" />
+            </svg>
+          </motion.div>
+
+          {/* Passing Wind Wisp 3 (Mid-body swoosh past broomstick) */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 pointer-events-none z-10"
+            animate={{
+              x: [210, -230],
+              y: [0, -4, 2, 0],
+              opacity: [0, 0.75, 0.75, 0.75, 0],
+            }}
+            transition={{
+              duration: 4.6,
+              delay: 0.8,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.15, 0.5, 0.85, 1],
+            }}
+          >
+            <svg width="55" height="16" viewBox="0 0 55 16" fill="none">
+              <path d="M 53 9 C 40 4, 25 13, 12 8 C 6 6, 2 8, 1 11" stroke="#DF9B35" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </motion.div>
+
+          {/* Passing Wind Wisp 4 (Forward breeze ahead of flight) */}
+          <motion.div
+            className="absolute top-1/4 left-1/2 pointer-events-none z-10"
+            animate={{
+              x: [225, -245],
+              opacity: [0, 0.72, 0.72, 0.72, 0],
+            }}
+            transition={{
+              duration: 4.8,
+              delay: 2.6,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.15, 0.5, 0.85, 1],
+            }}
+          >
+            <svg width="65" height="10" viewBox="0 0 65 10" fill="none">
+              <path d="M 63 5 C 48 2, 32 7, 16 4 C 8 2, 2 5, 1 5" stroke="#FAF6EE" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </motion.div>
+
+          {/* Aryo flying on broomstick */}
           <div className="relative z-10 flex flex-col items-center">
             <motion.div
               animate={{ y: [0, -8, 0], rotate: [0, 1.5, 0] }}
